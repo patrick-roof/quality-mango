@@ -9,7 +9,8 @@ module.exports = {
     },
 
     getSingleThought(req, res) {
-        Thought.findOne({ _id: req.params.thoughtId})
+      console.log(req.params.test)
+        Thought.findById( req.params.thoughtId )
             .then((thought) => {
             if (!thought) {
             return res.status(404).json({ message: 'No thought with that ID'})
@@ -28,14 +29,15 @@ module.exports = {
                     { new: true }
                 )
             })
-            .then((thought) => {
-                res.json(thought)
+            .then((user) => {
+                // res.json(thought)
+             !user
+             ? res.status(404).json({
+                message: 'Thought created, but found no user with that ID',
+                })
+            : res.json('Successfully created thought')
+
             }
-            //  !user
-            //  ? res.status(404).json({
-            //     message: 'Thought created, but found no user with that ID',
-            //     })
-            // : res.json('Successfully created thought')
         )
         .catch((err) => {
             console.log(err);

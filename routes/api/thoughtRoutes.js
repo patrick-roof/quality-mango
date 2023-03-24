@@ -15,7 +15,7 @@ router.route('/').get(getThoughts)
 router.route('/:userId').post(createThought)
 
 router
-  .route('/:Id')
+  .route('/:thoughtId')
   //^ this goes to the correct route for some reason?
   .get(getSingleThought)
   .put(updateThought)
